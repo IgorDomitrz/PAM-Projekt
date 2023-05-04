@@ -2,7 +2,7 @@
 Projekt aplikacji mobilnej sklepu z elektroniką użytkową.
 ## Opis
 
-Jest to projekt aplikacji mobilnej zawierającej w sobie funkcjonalności wielu stron - inwentaryzacyjnej, sprzedaży, supportu, klienckiej. Każda ze stron w zależności od przydzielonej funkcji będzie miała dostęp do oddzielnych paneli, w całości tworzących wspólny ekosystem dostarczający produkty potencjalnemu Klientowi z inwentarza magazynu. 
+  Jest to projekt aplikacji mobilnej zawierającej w sobie funkcjonalności wielu stron - inwentaryzacyjnej, sprzedaży, supportu, klienckiej. Każda ze stron w zależności od przydzielonej funkcji będzie miała dostęp do oddzielnych paneli, w całości tworzących wspólny ekosystem dostarczający produkty potencjalnemu Klientowi z inwentarza magazynu. 
 
 Poniżej rozpisano podział zadań:
 
