@@ -14,10 +14,9 @@ Igor Domitrz: Panel inwentaryzacyjny
 Jakub Gęśla: Baza danych
 
 * stworzenie bazy dancyh dla sklepu z elektroniką użytkową
-* panel logowania, rejestracji
-* koszyk zakupowy
-* wirtualny portfel
-* formularz zakpuowy
+* możliwość zarejestrowania się do aplikacji oraz logowanie się do niej.
+* koszyk zakupowy w którym będzie możlwiość edycji dnaego produktu/ów 
+* formularz zakpuowy w którym będzie możlwiość wypełnienia pól własnymi danymi, zakup produktu
 
 Jarosław Smoliński: Filtorwanie i sortowanie przez użytkownika
 
