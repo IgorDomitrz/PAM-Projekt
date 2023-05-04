@@ -11,6 +11,9 @@ Igor Domitrz: Panel inwentaryzacyjny
 * możliwość zeskanowania urządzenia w celu wyświetlenia jego historii magazynowej/serwisowej skanując kod QR.
 * gradacja urządzeń bazująca na przedstawionych parametrach (np. stan wizualy) i potencjalnych usterkach (np. pęknięcia, zadrapania, simlock, BER)
 
+Jakub Gęśla: Baza danych
+
+* stworzenie bazy dancyh dla naszego sklepu z elektroniką użutkową
 
 
 
