@@ -16,7 +16,7 @@ Jakub Gęśla: Baza danych
 * stworzenie bazy danych dla sklepu z elektroniką użytkową
 * możliwość zarejestrowania się do aplikacji oraz logowanie się do niej.
 * koszyk zakupowy w którym będzie możliwość zarządzania wybranymi produktami 
-* formularz zakpuowy w którym będzie możliwość wypełnienia pól własnymi danymi, zakup produktu
+* formularz zakpuowy w którym będzie możliwość wypełnienia pól własnymi danymi, zakup produktu.
 
 Jarosław Smoliński: Filtorwanie i sortowanie przez użytkownika
 
