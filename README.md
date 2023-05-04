@@ -6,10 +6,10 @@ Projekt aplikacji mobilnej sklepu z elektroniką użytkową.
 
 Igor Domitrz: Panel inwentaryzacyjny 
 
-*wylistowanie posiadanej w magazynie elektroniki użytkowej
-*możliwość powiązania inwentarzu z wystawionymi ofertami
-*możliwość zeskanowania urządzenia w celu wyświetlenia jego historii magazynowej/serwisowej skanując kod QR.
-*gradacja urządzeń bazująca na przedstawionych parametrach (np. stan wizualy) i potencjalnych usterkach (np. pęknięcia, zadrapania, simlock, BER)
+* wylistowanie posiadanej w magazynie elektroniki użytkowej
+* możliwość powiązania inwentarzu z wystawionymi ofertami
+* możliwość zeskanowania urządzenia w celu wyświetlenia jego historii magazynowej/serwisowej skanując kod QR.
+* gradacja urządzeń bazująca na przedstawionych parametrach (np. stan wizualy) i potencjalnych usterkach (np. pęknięcia, zadrapania, simlock, BER)
 
 
 
