@@ -13,8 +13,8 @@ Igor Domitrz: Panel inwentaryzacyjny
 
 Jakub Gęśla: Baza danych
 
-* stworzenie bazy dancyh dla naszego sklepu z elektroniką użytkową
-
+* stworzenie bazy dancyh dla sklepu z elektroniką użytkową
+* 
 
 
 
