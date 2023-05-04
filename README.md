@@ -19,6 +19,13 @@ Jakub Gęśla: Baza danych
 * wirtualny portfel
 * formularz zakpuowy
 
+Jarosław Smoliński: Filtorwanie i sortowanie przez użytkownika
+
+* możliwość sortowania produktów według ceny, recenzji, popularności
+* filtrowanie wyświetlanej zawartości zawartości według różnych kryteriów np. przedział cenowy, stan produktu, firma, model
+* pasek wyszukiwania produktu po nazwie
+* karta produktu wraz z opisem, specyfikacją, proponowanymi akcesoriami
+
 
 
 ## Autorzy
