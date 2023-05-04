@@ -12,10 +12,10 @@ Panel inwentaryzacyjny - wylistowanie posiadanej w magazynie elektroniki użytko
 
 
 ## Autorzy
-Igor Domitrz (igor.domitrz@student.wat.edu.pl)
-Jarosław Smoliński (jaroslaw.smolinski@student.wat.edu.pl)
-Jakub Gęśla (jakub.gesla@student.wat.edu.pl)
-Marek Steciuk (marek.steciuk@student.wat.edu.pl)
+* Igor Domitrz (igor.domitrz@student.wat.edu.pl)
+* Jarosław Smoliński (jaroslaw.smolinski@student.wat.edu.pl)
+* Jakub Gęśla (jakub.gesla@student.wat.edu.pl)
+* Marek Steciuk (marek.steciuk@student.wat.edu.pl)
 ### Historia wersji
 * 0.1
     * Manifest README
