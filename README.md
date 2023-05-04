@@ -11,6 +11,13 @@ Igor Domitrz: Panel inwentaryzacyjny
 * możliwość zeskanowania urządzenia w celu wyświetlenia jego historii magazynowej/serwisowej skanując kod QR.
 * gradacja urządzeń bazująca na przedstawionych parametrach (np. stan wizualy) i potencjalnych usterkach (np. pęknięcia, zadrapania, simlock, BER)
 
+Jarosław Smoliński: Filtorwanie i sortowanie przez użytkownika
+
+* możliwość sortowania produktów według ceny, recenzji, popularności
+* filtrowanie wyświetlanej zawartości zawartości według różnych kryteriów np. przedział cenowy, stan produktu, firma, model
+* pasek wyszukiwania produktu po nazwie
+
+
 Jakub Gęśla: Baza danych
 
 * stworzenie bazy dancyh dla sklepu z elektroniką użytkową
