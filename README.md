@@ -13,9 +13,9 @@ Igor Domitrz: Panel inwentaryzacyjny
 
 Jakub Gęśla: Baza danych
 
-* stworzenie bazy dancyh dla sklepu z elektroniką użytkową
+* stworzenie bazy danych dla sklepu z elektroniką użytkową
 * możliwość zarejestrowania się do aplikacji oraz logowanie się do niej.
-* koszyk zakupowy w którym będzie możlwiość edycji dnaego produktu/ów 
+* koszyk zakupowy w którym będzie możlwiość zarządzania wybranymi produktami 
 * formularz zakpuowy w którym będzie możlwiość wypełnienia pól własnymi danymi, zakup produktu
 
 Jarosław Smoliński: Filtorwanie i sortowanie przez użytkownika
