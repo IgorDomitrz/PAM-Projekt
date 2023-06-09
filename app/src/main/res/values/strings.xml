@@ -114,4 +114,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="go_to_login">Zaloguj</string>
+    <string name="homeToSettings">Ustawienia</string>
+    <string name="homeToLogin">Zaloguj</string>
+    <string name="homeToBasket">Koszyk</string>
+    <string name="homeToSearch">Wyszukaj</string>
 </resources>

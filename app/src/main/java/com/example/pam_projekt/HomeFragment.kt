@@ -1,5 +1,4 @@
 package com.example.pam_projekt
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,12 +13,19 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        // Button click listener to navigate to FragmentLogin
-        view.findViewById<Button>(R.id.loginButton).setOnClickListener {
-            findNavController().navigate(R.id.loginFragment)
+        view.findViewById<Button>(R.id.homeToLoginButton).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        }
+        view.findViewById<Button>(R.id.homeToSettingsButton).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+        }
+        view.findViewById<Button>(R.id.homeToBasketButton).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_basketFragment)
+        }
+        view.findViewById<Button>(R.id.homeToSearchButton).setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
         return view
