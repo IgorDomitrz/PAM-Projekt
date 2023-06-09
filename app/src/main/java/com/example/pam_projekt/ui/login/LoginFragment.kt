@@ -27,28 +27,27 @@ class LoginFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+onClickHandle()
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
     private fun onClickHandle() {
         requireActivity().onBackPressedDispatcher.addCallback {
             findNavController().popBackStack()
         }
     }
 
-    override fun onCreateView(
-
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
-        onClickHandle()
+
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.login
@@ -132,6 +131,5 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
     }
 }
