@@ -11,10 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.navigation.fragment.findNavController
 import com.example.pam_projekt.databinding.FragmentLoginBinding
 
 import com.example.pam_projekt.R
@@ -28,7 +27,14 @@ class LoginFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private fun onClickHandle() {
+        requireActivity().onBackPressedDispatcher.addCallback {
+            findNavController().popBackStack()
+        }
+    }
+
     override fun onCreateView(
+
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,9 +47,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
-
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
+        onClickHandle()
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.login
@@ -127,5 +132,6 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
     }
 }
