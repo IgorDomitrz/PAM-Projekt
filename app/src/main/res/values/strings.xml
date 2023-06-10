@@ -138,5 +138,22 @@
     <string name="peryferia">peryferia</string>
     <string name="kat_8">kat_8</string>
     <string name="programy">programy</string>
+    <string name="serviceHeader">Edytor rekordów</string>
+    <string name="device">Device</string>
+    <string name="company">Company</string>
+    <string name="price">Price</string>
+    <string name="detail">Detail</string>
+    <string name="id">ID:</string>
+    <string name="_0">0</string>
+    <string name="przypisany_do">Przypisany do:</string>
+    <string name="produkt">Produkt</string>
+    <string name="firma">Firma</string>
+    <string name="cena">Cena</string>
+    <string name="opis">Opis</string>
+    <string name="wyszukaj_id">Wyszukaj ID...</string>
+    <string name="wyszukaj">Wyszukaj</string>
+    <string name="dodaj_rekord">Dodaj rekord</string>
+    <string name="gotoSerwis">Przywróć do Serwisu</string>
+    <string name="gotoDetal">Przenieś do Detalu</string>
 
 </resources>

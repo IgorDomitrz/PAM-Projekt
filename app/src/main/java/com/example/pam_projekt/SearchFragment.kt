@@ -4,69 +4,55 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pam_projekt.placeholder.PlaceholderContent
 
-/**
- * A fragment representing a list of Items.
- */
 class SearchFragment : Fragment() {
 
-    private var columnCount = 1
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: SearchRecyclerViewAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_search_list, container, false)
+        recyclerView = view.findViewById(R.id.list)
+        return view
     }
 
-    override fun onCreateView(
-
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_search_list, container, false)
-    }
-    private fun onClickHandle() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            requireActivity().findNavController(R.id.navHostFragment).popBackStack()
-        }
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onClickHandle()
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
-            }
+        setupRecyclerView()
+        populateRecyclerView()
+    }
+    private fun onClickHandle() {
+        view?.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
-
-
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
+    private fun setupRecyclerView() {
+        adapter = SearchRecyclerViewAdapter(ItemBase.itemList)
+        adapter.setOnItemClickListener(object : SearchRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(device: String, company: String, price: Double, detail: String) {
+                val bundle = Bundle().apply {
+                    putString("device", device)
+                    putString("company", company)
+                    putDouble("price", price)
+                    putString("detail", detail)
                 }
+                findNavController().navigate(R.id.action_searchFragment_to_scrollingFragment, bundle)
             }
+        })
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+    }
+
+    private fun populateRecyclerView() {
+        // Pobierz listę z klasy com.example.pam_projekt.ItemBase lub odpowiedniej instancji
+        val itemList = ItemBase.itemList
+
+        adapter.notifyDataSetChanged()
     }
 }

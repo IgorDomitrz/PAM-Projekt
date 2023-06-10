@@ -94,11 +94,13 @@ class MainActivity : AppCompatActivity() {
             val selectedMenuItem = navigationView.menu.findItem(selectedItemId!!)
             if (selectedItemId == null || currentDestination?.id != selectedItemId) {
                 selectedMenuItem?.isChecked = false
-                navigationView.setCheckedItem(0)
+                selectedItemId.let { navigationView.setCheckedItem(it) } // Only set checked item if it's not null
             }
             super.onBackPressed()
         }
     }
+
+
     private fun openDrawer() {
         drawerLayout.openDrawer(GravityCompat.START)
     }
