@@ -138,5 +138,36 @@
     <string name="peryferia">peryferia</string>
     <string name="kat_8">kat_8</string>
     <string name="programy">programy</string>
+    <string name="serviceHeader">Edytor rekordów</string>
+    <string name="device">Device</string>
+    <string name="company">Company</string>
+    <string name="price">Price</string>
+    <string name="detail">Detail</string>
+    <string name="id">ID:</string>
+    <string name="_0">0</string>
+    <string name="przypisany_do">Przypisany do:</string>
+    <string name="produkt">Produkt</string>
+    <string name="firma">Firma</string>
+    <string name="cena">Cena</string>
+    <string name="opis">Opis</string>
+    <string name="wyszukaj_id">Wyszukaj ID...</string>
+    <string name="wyszukaj">Wyszukaj</string>
+    <string name="dodaj_rekord">Dodaj rekord</string>
+    <string name="gotoSerwis">Przywróć do Serwisu</string>
+    <string name="gotoDetal">Przenieś do Detalu</string>
+    <string name="formularz_zakupowy">Formularz Zakupowy</string>
+    <string name="formularz_zakupowyv2">Formularz zakupowy</string>
+    <string name="dane_zamawiaj_cego">Dane zamawiającego</string>
+    <string name="imi">Imię</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="numer_telefonu">Numer telefonu</string>
+    <string name="adres_e_mail">Adres e-mail</string>
+    <string name="numer_karty">Numer Karty</string>
+    <string name="data_wa_no_ci">Data ważności</string>
+    <string name="kod_cvc">Kod CVC*</string>
+    <string name="karta_p_atnicza">Karta płatnicza</string>
+    <string name="got_wka">Gotówka</string>
+    <string name="zakup_produkt">Zakup Produkt</string>
+    <string name="w">"W "</string>
 
 </resources>

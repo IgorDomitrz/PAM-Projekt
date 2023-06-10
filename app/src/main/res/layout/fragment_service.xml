@@ -1,14 +1,146 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ServiceFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/serviceHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:text="@string/serviceHeader" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/deviceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:hint="@string/produkt" />
+
+    <EditText
+        android:id="@+id/companyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:hint="@string/firma" />
+
+    <EditText
+        android:id="@+id/priceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:hint="@string/cena" />
+
+    <EditText
+        android:id="@+id/detailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:hint="@string/opis" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_back" />
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_save" />
+
+        <ImageButton
+            android:id="@+id/forwardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_forward" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="@string/id" />
+
+        <TextView
+            android:id="@+id/idTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="@string/_0" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:gravity="end"
+            android:src="@drawable/ic_delete" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:text="@string/w"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dodaj_rekord" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="200dp"
+        android:layout_height="50sp"
+        android:hint="@string/wyszukaj_id" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wyszukaj" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/moveToDetailButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/gotoDetal" />
+
+    <Button
+        android:id="@+id/restoreToServiceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gotoSerwis" />
+</LinearLayout>
+
+</LinearLayout>

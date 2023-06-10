@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -66,7 +69,14 @@
         android:id="@+id/serviceFragment"
         android:name="com.example.pam_projekt.ServiceFragment"
         android:label="fragment_service"
-        tools:layout="@layout/fragment_service" />
+        tools:layout="@layout/fragment_service" >
+        <action
+            android:id="@+id/action_serviceFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_serviceFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.pam_projekt.BasketFragment"
@@ -75,5 +85,14 @@
         <action
             android:id="@+id/action_basketFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.example.pam_projekt.FormFragment"
+        android:label="fragment_form"
+        tools:layout="@layout/fragment_form" >
+        <action
+            android:id="@+id/action_formFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
     </fragment>
 </navigation>

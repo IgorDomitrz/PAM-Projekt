@@ -87,18 +87,14 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closeDrawer()
+        } else if (navController.currentDestination?.id != R.id.homeFragment) {
+            navController.navigateUp()
         } else {
-            // Jeśli zaznaczony element w menu nawigacyjnym nie jest jedną z dostępnych opcji, wyczyść zaznaczenie
-            val currentDestination = navController.currentDestination
-            val selectedItemId = navigationView.checkedItem?.itemId
-            val selectedMenuItem = navigationView.menu.findItem(selectedItemId!!)
-            if (selectedItemId == null || currentDestination?.id != selectedItemId) {
-                selectedMenuItem?.isChecked = false
-                navigationView.setCheckedItem(0)
-            }
             super.onBackPressed()
         }
     }
+
+
     private fun openDrawer() {
         drawerLayout.openDrawer(GravityCompat.START)
     }
