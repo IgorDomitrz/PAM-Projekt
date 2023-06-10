@@ -6,11 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.*
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 
 class ServiceFragment : Fragment() {
     private lateinit var rootView: View
@@ -87,6 +82,7 @@ class ServiceFragment : Fragment() {
             }
 
             Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_SHORT).show()
+            displayItem(currentItemId) // call displayItem() here
         } else {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
         }
@@ -114,6 +110,7 @@ class ServiceFragment : Fragment() {
         if (service != null) {
             ServiceBase.pushItem(service.id)
             Toast.makeText(requireContext(), "Item moved to Detail", Toast.LENGTH_SHORT).show()
+            displayItem(service.id) // call displayItem() here
         }
     }
 
@@ -123,6 +120,7 @@ class ServiceFragment : Fragment() {
         if (item != null) {
             ServiceBase.pullItem(item.id)
             Toast.makeText(requireContext(), "Item restored to Service", Toast.LENGTH_SHORT).show()
+            displayItem(item.id) // call displayItem() here
         }
     }
 
@@ -137,11 +135,11 @@ class ServiceFragment : Fragment() {
             currentItemId = ServiceBase.currentId - 1
 
             Toast.makeText(requireContext(), "New item added successfully", Toast.LENGTH_SHORT).show()
+            displayItem(currentItemId) // call displayItem() here
         } else {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
         }
     }
-
     private fun searchById() {
         val idEditText = rootView.findViewById<EditText>(R.id.searchEditText)
         val id = idEditText.text.toString().toIntOrNull()

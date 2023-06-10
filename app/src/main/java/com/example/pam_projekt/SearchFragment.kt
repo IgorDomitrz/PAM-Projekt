@@ -53,9 +53,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun populateRecyclerView() {
-        // Pobierz listę z klasy com.example.pam_projekt.ItemBase lub odpowiedniej instancji
         val itemList = ItemBase.itemList
-
-        adapter.notifyDataSetChanged()
+        adapter.updateItems(itemList)
     }
 }

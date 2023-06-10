@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import java.util.ArrayList
 
-class SearchRecyclerViewAdapter(private val itemList: ArrayList<ItemBase.ItemData>) :
+class SearchRecyclerViewAdapter(private var itemList: ArrayList<ItemBase.ItemData>) :
     RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder>() {
 
     private var onItemClickListener: OnItemClickListener? = null
@@ -21,6 +21,11 @@ class SearchRecyclerViewAdapter(private val itemList: ArrayList<ItemBase.ItemDat
         this.onItemClickListener = listener
     }
 
+    fun updateItems(newItems: ArrayList<ItemBase.ItemData>) {
+        this.itemList = newItems
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_search, parent, false)
@@ -28,17 +33,14 @@ class SearchRecyclerViewAdapter(private val itemList: ArrayList<ItemBase.ItemDat
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val device = ItemBase.getDevice(position)
-        val company = ItemBase.getCompany(position)
-        val price = ItemBase.getPrice(position)
-        val detail = ItemBase.getDetail(position)
+        val item = itemList[position]
 
-        holder.deviceView.text = device
-        holder.companyView.text = company
-        holder.priceView.text = price.toString()
-        holder.detailView.text = detail
+        holder.deviceView.text = item.device
+        holder.companyView.text = item.company
+        holder.priceView.text = item.price.toString()
+        holder.detailView.text = item.detail
 
-        val drawableId = when (device) {
+        val drawableId = when (item.device) {
             "Smartfon" -> R.drawable.ic_smartphone
             "Konsola" -> R.drawable.ic_console
             "Komputer" -> R.drawable.ic_computer
