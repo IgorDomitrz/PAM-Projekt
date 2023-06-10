@@ -1,11 +1,11 @@
 package com.example.pam_projekt
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,13 +22,14 @@ class ServiceFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-private fun onClickHandle(){
-    requireActivity().onBackPressedDispatcher.addCallback {
-        findNavController().popBackStack()
+    private fun onClickHandle() {
+        requireActivity().onBackPressedDispatcher.addCallback {
+            findNavController().popBackStack()
+        }
     }
-}
+
     override fun onCreate(savedInstanceState: Bundle?) {
-    onClickHandle()
+        onClickHandle()
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)

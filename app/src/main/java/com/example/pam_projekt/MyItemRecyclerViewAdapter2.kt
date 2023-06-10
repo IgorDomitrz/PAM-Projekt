@@ -1,49 +1,50 @@
 package com.example.pam_projekt
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-import com.example.pam_projekt.placeholder.PlaceholderContent.PlaceholderItem
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pam_projekt.databinding.FragmentBasketBinding
+import com.example.pam_projekt.placeholder.PlaceholderContent.PlaceholderItem
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyItemRecyclerViewAdapter2(
-    private val values: List<PlaceholderItem>
+    private val values: List<PlaceholderItem>,
+    private val onItemClick: (PlaceholderItem) -> Unit
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter2.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        return ViewHolder(
-            FragmentBasketBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = FragmentBasketBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
-
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentBasketBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+    inner class ViewHolder(private val binding: FragmentBasketBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private val idView: TextView = binding.itemNumber
+        private val contentView: TextView = binding.content
+
+        fun bind(item: PlaceholderItem) {
+            idView.text = item.id
+            contentView.text = item.content
+
+            itemView.setOnClickListener {
+                onItemClick(item)
+            }
+        }
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"
         }
     }
-
 }

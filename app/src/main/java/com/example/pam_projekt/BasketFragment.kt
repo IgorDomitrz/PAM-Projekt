@@ -1,34 +1,25 @@
 package com.example.pam_projekt
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pam_projekt.placeholder.PlaceholderContent
 
-/**
- * A fragment representing a list of Items.
- */
 class BasketFragment : Fragment() {
 
     private var columnCount = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     onClickHandle()
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
-    private fun onClickHandle() {
-        requireActivity().onBackPressedDispatcher.addCallback {
-            findNavController().popBackStack()
         }
     }
 
@@ -45,18 +36,40 @@ class BasketFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyItemRecyclerViewAdapter2(PlaceholderContent.ITEMS)
+                adapter = MyItemRecyclerViewAdapter2(PlaceholderContent.ITEMS) { item ->
+                    // Handle item click
+                    when (item.id) {
+                        // Handle click on specific item
+                        // Example:
+                        // R.id.item_id -> navigateToItemDetail()
+                        else -> {
+                            // Handle click on other items
+                            // Navigate to the appropriate fragment
+                            findNavController().navigate(R.id.action_basketFragment_to_homeFragment)
+                        }
+                    }
+                }
             }
         }
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onClickHandle()
+    }
+
+    private fun onClickHandle() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().popBackStack()
+        }
     }
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             BasketFragment().apply {

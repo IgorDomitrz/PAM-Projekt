@@ -13,7 +13,8 @@
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
-
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
@@ -120,5 +121,22 @@
     <string name="homeToSearch">Wyszukaj</string>
     <string name="rejestracja">Rejestracja</string>
     <string name="login">Login</string>
+    <string name="ItemSearchTab">Wpisz nazwę urządzenia</string>
+    <string name="logo">logo</string>
+    <string name="kat_1">kat_1</string>
+    <string name="kat_2">kat_2</string>
+    <string name="konsole">konsole</string>
+    <string name="kat_3">kat_3</string>
+    <string name="komputery">komputery</string>
+    <string name="kat_4">kat_4</string>
+    <string name="podzespo_y">podzespoły</string>
+    <string name="kat_5">kat_5</string>
+    <string name="audio">audio</string>
+    <string name="kat_6">kat_6</string>
+    <string name="telewizory">telewizory</string>
+    <string name="kat_7">kat_7</string>
+    <string name="peryferia">peryferia</string>
+    <string name="kat_8">kat_8</string>
+    <string name="programy">programy</string>
 
 </resources>

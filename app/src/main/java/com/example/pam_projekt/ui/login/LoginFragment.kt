@@ -1,9 +1,5 @@
 package com.example.pam_projekt.ui.login
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,10 +9,14 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.pam_projekt.databinding.FragmentLoginBinding
-
 import com.example.pam_projekt.R
+import com.example.pam_projekt.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
@@ -32,21 +32,22 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-onClickHandle()
+        onClickHandle()
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     private fun onClickHandle() {
-        requireActivity().onBackPressedDispatcher.addCallback {
-            findNavController().popBackStack()
-        }
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+                requireActivity().findNavController(R.id.navHostFragment).popBackStack()
+            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
+        loginViewModel =
+            ViewModelProvider(this, LoginViewModelFactory())[LoginViewModel::class.java]
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
