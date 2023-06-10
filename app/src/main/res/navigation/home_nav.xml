@@ -86,4 +86,13 @@
             android:id="@+id/action_basketFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.example.pam_projekt.FormFragment"
+        android:label="fragment_form"
+        tools:layout="@layout/fragment_form" >
+        <action
+            android:id="@+id/action_formFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+    </fragment>
 </navigation>
