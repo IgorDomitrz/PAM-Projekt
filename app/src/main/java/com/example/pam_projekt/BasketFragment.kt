@@ -15,7 +15,7 @@ import com.example.pam_projekt.placeholder.PlaceholderContent
 
 class BasketFragment : Fragment() {
 
-    private var columnCount = 1
+   private var columnCount = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
