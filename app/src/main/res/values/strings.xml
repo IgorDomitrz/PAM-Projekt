@@ -155,5 +155,18 @@
     <string name="dodaj_rekord">Dodaj rekord</string>
     <string name="gotoSerwis">Przywróć do Serwisu</string>
     <string name="gotoDetal">Przenieś do Detalu</string>
+    <string name="formularz_zakupowy">Formularz Zakupowy</string>
+    <string name="formularz_zakupowyv2">Formularz zakupowy</string>
+    <string name="dane_zamawiaj_cego">Dane zamawiającego</string>
+    <string name="imi">Imię</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="numer_telefonu">Numer telefonu</string>
+    <string name="adres_e_mail">Adres e-mail</string>
+    <string name="numer_karty">Numer Karty</string>
+    <string name="data_wa_no_ci">Data ważności</string>
+    <string name="kod_cvc">Kod CVC*</string>
+    <string name="karta_p_atnicza">Karta płatnicza</string>
+    <string name="got_wka">Gotówka</string>
+    <string name="zakup_produkt">Zakup Produkt</string>
 
 </resources>

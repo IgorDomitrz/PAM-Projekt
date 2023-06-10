@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -27,8 +28,11 @@ class BasketFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_basket_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_basket, container, false)
 
+        view.findViewById<Button>(R.id.formButton).setOnClickListener {
+            findNavController().navigate(R.id.formFragment)
+        }
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -55,10 +59,6 @@ class BasketFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        onClickHandle()
-    }
 
     private fun onClickHandle() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
