@@ -6,6 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 
 class ServiceFragment : Fragment() {
     private lateinit var rootView: View
@@ -19,38 +24,42 @@ class ServiceFragment : Fragment() {
         return rootView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     private fun setupButtonListeners() {
-        val backButton = rootView.findViewById<ImageView>(R.id.backButton)
+        val backButton = rootView.findViewById<ImageButton>(R.id.backButton)
         backButton.setOnClickListener {
             navigateBack()
         }
 
-        val saveButton = rootView.findViewById<ImageView>(R.id.saveButton)
+        val saveButton = rootView.findViewById<ImageButton>(R.id.saveButton)
         saveButton.setOnClickListener {
             saveData()
         }
 
-        val forwardButton = rootView.findViewById<ImageView>(R.id.forwardButton)
+        val forwardButton = rootView.findViewById<ImageButton>(R.id.forwardButton)
         forwardButton.setOnClickListener {
             navigateForward()
         }
 
-        val deleteButton = rootView.findViewById<ImageView>(R.id.deleteButton)
+        val deleteButton = rootView.findViewById<ImageButton>(R.id.deleteButton)
         deleteButton.setOnClickListener {
             deleteRecord()
         }
 
-        val moveToDetailButton = rootView.findViewById<ImageView>(R.id.moveToDetailButton)
+        val moveToDetailButton = rootView.findViewById<Button>(R.id.moveToDetailButton)
         moveToDetailButton.setOnClickListener {
             moveToDetail()
         }
 
-        val restoreToServiceButton = rootView.findViewById<ImageView>(R.id.restoreToServiceButton)
+        val restoreToServiceButton = rootView.findViewById<Button>(R.id.restoreToServiceButton)
         restoreToServiceButton.setOnClickListener {
             restoreToService()
         }
 
-        val addButton = rootView.findViewById<ImageView>(R.id.addButton)
+        val addButton = rootView.findViewById<Button>(R.id.addButton)
         addButton.setOnClickListener {
             addNewItem()
         }
@@ -59,7 +68,7 @@ class ServiceFragment : Fragment() {
         searchButton.setOnClickListener {
             searchById()
         }
-    }
+          }
 
     private fun saveData() {
         val device = rootView.findViewById<EditText>(R.id.deviceEditText).text.toString()
@@ -106,8 +115,6 @@ class ServiceFragment : Fragment() {
             ServiceBase.pushItem(service.id)
             Toast.makeText(requireContext(), "Item moved to Detail", Toast.LENGTH_SHORT).show()
         }
-
-        navigateForward()
     }
 
     private fun restoreToService() {
@@ -117,8 +124,6 @@ class ServiceFragment : Fragment() {
             ServiceBase.pullItem(item.id)
             Toast.makeText(requireContext(), "Item restored to Service", Toast.LENGTH_SHORT).show()
         }
-
-        navigateForward()
     }
 
     private fun addNewItem() {
@@ -148,10 +153,10 @@ class ServiceFragment : Fragment() {
                 currentItemId = item.id
                 displayItem(currentItemId)
             } else {
-                Toast.makeText(requireContext(), "Item not found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Nie znaleziono ID", Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(requireContext(), "Please enter a valid ID", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Wpisz poprawne ID", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -173,7 +178,7 @@ class ServiceFragment : Fragment() {
             priceEditText.setText(service.price.toString())
             detailEditText.setText(service.detail)
             idTextView.text = service.id.toString()
-            locationTextView.text = "Serwis"
+            locationTextView.text = "Serwisie"
         } else {
             val item = ItemBase.itemList.find { it.id == itemId }
 
@@ -183,7 +188,7 @@ class ServiceFragment : Fragment() {
                 priceEditText.setText(item.price.toString())
                 detailEditText.setText(item.detail)
                 idTextView.text = item.id.toString()
-                locationTextView.text = "Detal"
+                locationTextView.text = "Detalu"
             } else {
                 deviceEditText.setText("")
                 companyEditText.setText("")

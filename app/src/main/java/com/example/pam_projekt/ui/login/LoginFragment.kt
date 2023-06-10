@@ -39,9 +39,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun onClickHandle() {
-            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-                requireActivity().findNavController(R.id.navHostFragment).popBackStack()
-            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().findNavController(R.id.navHostFragment).popBackStack()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -117,11 +117,20 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private var isNavigationPerformed = false
+
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
+        // TODO: initiate successful logged-in experience
+        if (!isNavigationPerformed && model.username == "admin@admin.pl" && model.password == "admin1") {
+            // Przenieś się do fragmentu ServiceFragment tylko jeśli nie wykonano jeszcze nawigacji
+            findNavController().navigate(R.id.serviceFragment)
+            isNavigationPerformed = true
+        }
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+
+        // Sprawdź warunki logowania
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

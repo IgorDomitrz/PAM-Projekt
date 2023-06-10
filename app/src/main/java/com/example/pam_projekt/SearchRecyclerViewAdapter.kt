@@ -14,7 +14,7 @@ class SearchRecyclerViewAdapter(private val itemList: ArrayList<ItemBase.ItemDat
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
-        fun onItemClick(device: String, company: String, price: Double, detail: String)
+        fun onItemClick(position: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -52,7 +52,7 @@ class SearchRecyclerViewAdapter(private val itemList: ArrayList<ItemBase.ItemDat
         holder.itemImageView.setImageResource(drawableId)
 
         holder.itemView.setOnClickListener {
-            onItemClickListener?.onItemClick(device, company, price, detail)
+            onItemClickListener?.onItemClick(position)
         }
     }
 

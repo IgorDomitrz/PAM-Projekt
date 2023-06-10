@@ -155,5 +155,6 @@
     <string name="dodaj_rekord">Dodaj rekord</string>
     <string name="gotoSerwis">Przywróć do Serwisu</string>
     <string name="gotoDetal">Przenieś do Detalu</string>
+    <string name="w">"W "</string>
 
 </resources>

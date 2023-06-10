@@ -42,19 +42,19 @@
         android:gravity="start"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_back" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_save" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/forwardButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="5dp"
             android:gravity="center"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -77,22 +77,22 @@
             android:textSize="17sp"
             android:text="@string/_0" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="5dp"
             android:gravity="end"
             android:src="@drawable/ic_delete" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
             android:gravity="center"
+            android:text="@string/w"
             android:textSize="17sp"
-            android:layout_marginStart="37dp"
-            android:textStyle="bold"
-            android:text="@string/przypisany_do" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/locationTextView"
@@ -101,11 +101,6 @@
             android:gravity="center"
             android:layout_marginStart="5dp"
             android:textSize="17sp" />
-
-        <TextView
-            android:layout_width="0.1dp"
-            android:layout_height="7dp"
-            android:layout_weight="1" />
 
     </LinearLayout>
     <Button

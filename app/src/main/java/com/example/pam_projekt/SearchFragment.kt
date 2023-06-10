@@ -26,20 +26,23 @@ class SearchFragment : Fragment() {
         setupRecyclerView()
         populateRecyclerView()
     }
+
     private fun onClickHandle() {
         view?.setOnClickListener {
             findNavController().popBackStack()
         }
     }
+
     private fun setupRecyclerView() {
         adapter = SearchRecyclerViewAdapter(ItemBase.itemList)
         adapter.setOnItemClickListener(object : SearchRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(device: String, company: String, price: Double, detail: String) {
+            override fun onItemClick(position: Int) {
+                val item = ItemBase.itemList[position]
                 val bundle = Bundle().apply {
-                    putString("device", device)
-                    putString("company", company)
-                    putDouble("price", price)
-                    putString("detail", detail)
+                    putString("device", item.device)
+                    putString("company", item.company)
+                    putDouble("price", item.price)
+                    putString("detail", item.detail)
                 }
                 findNavController().navigate(R.id.action_searchFragment_to_scrollingFragment, bundle)
             }
