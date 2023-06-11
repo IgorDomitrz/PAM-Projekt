@@ -45,8 +45,9 @@ class FormFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_form, container, false)
 
         view.findViewById<Button>(R.id.buttonBuy).setOnClickListener {
-            Toast.makeText(getActivity(),
-                "Zakup udany", Toast.LENGTH_LONG).show();
+            Toast.makeText(
+                activity,
+                "Zakup udany", Toast.LENGTH_LONG).show()
         }
         return view
     }
