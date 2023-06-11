@@ -22,7 +22,7 @@
         android:layout_height="55dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Imię Sprzedawcy"
+        android:text="@+id/username"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
