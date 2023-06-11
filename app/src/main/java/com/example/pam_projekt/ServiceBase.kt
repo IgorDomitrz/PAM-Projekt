@@ -4,7 +4,7 @@ object ServiceBase {
     val serviceList: ArrayList<ServiceData> = ArrayList()
     var currentId: Int = 0
     init {
-        // Add sample data
+
         serviceList.add(ServiceData(0, "Słuchawki", "Samsung", 100.0, "Testowe słuchawki"))
         serviceList.add(ServiceData(1, "Program", "CIA", 200.0, "Testowy program"))
         serviceList.add(ServiceData(2, "Smartfon", "Samsung", 1000.0, "Testowy smartfon"))

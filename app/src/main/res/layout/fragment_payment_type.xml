@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Typ Płatności"
-        android:textColor="#DA0CF1"
+        android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold" />
 

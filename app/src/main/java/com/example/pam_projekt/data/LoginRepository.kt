@@ -9,7 +9,7 @@ import com.example.pam_projekt.data.model.LoggedInUser
 
 class LoginRepository(val dataSource: LoginDataSource) {
 
-    // in-memory cache of the loggedInUser object
+
     var user: LoggedInUser? = null
         private set
 

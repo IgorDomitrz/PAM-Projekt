@@ -26,21 +26,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Toolbar
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_logo)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Drawer layout
+
         drawerLayout = findViewById(R.id.drawerLayout)
 
-        // Navigation controller
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Set up navigation view
+
         navigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -67,28 +67,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Set up click listener for the hamburger icon in the toolbar
+
         toolbar.setNavigationOnClickListener {
             openDrawer()
         }
 
-        // Set up destination changed listener to update selected item in navigation view
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             val menuItem = navigationView.menu.findItem(destination.id)
             menuItem?.isChecked = true
         }
 
-        // Initialize FirebaseAuth instance
+
         firebaseAuth = FirebaseAuth.getInstance()
 
-        // Get reference to the "Login" menu item
+
         menuLoginItem = navigationView.menu.findItem(R.id.menu_login)
 
-        // Check if a user is already signed in
+
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
             updateMenuLoginItem(true)
-            // User is signed in, navigate to the desired destination
+
             navController.navigate(R.id.homeFragment)
         } else {
             updateMenuLoginItem(false)
