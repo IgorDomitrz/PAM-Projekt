@@ -127,6 +127,11 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.serviceFragment)
             isNavigationPerformed = true
         }
+        else {
+            findNavController().navigate(R.id.homeFragment)
+            isNavigationPerformed = true
+
+        }
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
 
