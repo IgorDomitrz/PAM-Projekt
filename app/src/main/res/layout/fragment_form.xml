@@ -102,9 +102,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="80sp"
-            android:background="#DA0CF1"
             android:onClick="button"
             android:text="@string/zakup_produkt"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:background="@drawable/background_button"
+            style="@style/ButtonStyle"/>
     </LinearLayout>
 </LinearLayout>

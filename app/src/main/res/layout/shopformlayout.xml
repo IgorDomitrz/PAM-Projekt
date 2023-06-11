@@ -62,10 +62,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#DA0CF1"
+            android:background="@drawable/background_button"
             android:onClick="button"
             android:text="Wybierz Typ Płatności"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            style="@style/ButtonStyle"/>
 
         <Button
             android:id="@+id/buttonBuy"
@@ -75,10 +76,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="#DA0CF1"
+            android:background="@drawable/background_button"
             android:onClick="button"
             android:text="Zakup Produkt"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            style="@style/ButtonStyle"/>
 
 
     </LinearLayout>

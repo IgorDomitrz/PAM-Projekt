@@ -68,7 +68,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
+
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -102,7 +103,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView5"
@@ -136,7 +137,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -170,7 +171,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -213,7 +214,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -247,7 +248,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -281,7 +282,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -315,7 +316,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="0.25"
-                android:background="@color/purple_200">
+                android:background="@drawable/background_rounded">
 
                 <ImageView
                     android:id="@+id/imageView11"
@@ -360,14 +361,15 @@
 
     <Button
         android:id="@+id/homeToSearchButton"
-        style="?android:attr/borderlessButtonStyle"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="50sp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="28dp"
         android:text="@string/homeToSearch"
         app:layout_constraintEnd_toEndOf="@+id/cardViewWriteInChat"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewWriteInChat" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewWriteInChat"
+        android:background="@drawable/background_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

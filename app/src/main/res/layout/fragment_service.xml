@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:id="@+id/serviceHeader"
@@ -107,7 +108,9 @@
         android:id="@+id/addButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dodaj_rekord" />
+        android:text="@string/dodaj_rekord"
+        android:background="@drawable/background_button"
+        style="@style/ButtonStyle"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -123,7 +126,9 @@
         android:id="@+id/searchButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/wyszukaj" />
+        android:text="@string/wyszukaj"
+        android:background="@drawable/background_button"
+        style="@style/ButtonStyle"/>
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,13 +139,17 @@
         android:id="@+id/moveToDetailButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/gotoDetal" />
+        android:text="@string/gotoDetal"
+        android:background="@drawable/background_button"
+        style="@style/ButtonStyle"/>
 
     <Button
         android:id="@+id/restoreToServiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/gotoSerwis" />
+        android:text="@string/gotoSerwis"
+        android:background="@drawable/background_button"
+        style="@style/ButtonStyle"/>
 </LinearLayout>
 
 </LinearLayout>
