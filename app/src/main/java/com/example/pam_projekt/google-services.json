@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1008934973762",
+    "project_id": "deviceshopapp-8d1d9",
+    "storage_bucket": "deviceshopapp-8d1d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008934973762:android:ce33a5d65d37763d6dd8db",
+        "android_client_info": {
+          "package_name": "com.example.pam_projekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008934973762-tfvp1rbtr0qfqbr3brke8jk5jnbb26qo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8svoU1zjDaVvzDkdglxYvlLyQsfHgvgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008934973762-tfvp1rbtr0qfqbr3brke8jk5jnbb26qo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
