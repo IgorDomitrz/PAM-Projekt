@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.pam_projekt.databinding.FragmentScrollingBinding
 
 class ScrollingFragment : Fragment() {
@@ -15,6 +18,8 @@ class ScrollingFragment : Fragment() {
     private val args: ScrollingFragmentArgs by lazy {
         ScrollingFragmentArgs.fromBundle(requireArguments())
     }
+
+    private val viewModel: BasketViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,11 +38,28 @@ class ScrollingFragment : Fragment() {
         binding.textViewCompany.text = args.company
         binding.textViewPrice.text = args.price.toString()
         binding.textViewDetail.text = args.detail
-changeIcon()
+        changeIcon()
 
+        view.findViewById<Button>(R.id.gotoBasket)?.setOnClickListener {
+            val device = args.device
+            val company = args.company
+            val price = args.price
+            val detail = args.detail
+
+            val itemAlreadyExists = BasketBase.basketList.any { it.device == device && it.company == company }
+
+            if (itemAlreadyExists) {
+                Toast.makeText(requireContext(), "Item is already in the basket", Toast.LENGTH_SHORT).show()
+            } else {
+                BasketBase.addBasket(id, device, company, price, detail)
+                Toast.makeText(requireContext(), "Item added to the basket", Toast.LENGTH_SHORT).show()
+            }
+
+            findNavController().navigate(R.id.action_scrollingFragment_to_basketFragment)
+        }
     }
 
-    private fun changeIcon(){
+    private fun changeIcon() {
         val drawableId = when (args.device) {
             "Smartfon" -> R.drawable.ic_smartphone
             "Konsola" -> R.drawable.ic_console
@@ -49,7 +71,7 @@ changeIcon()
             "Program" -> R.drawable.ic_program
             else -> R.drawable.logo_rakieta // Add a default drawable if needed
         }
-        view?.findViewById<ImageView>(R.id.imageViewIcon)?.setImageResource(drawableId);
+        binding.imageViewIcon.setImageResource(drawableId)
     }
 
     override fun onDestroyView() {

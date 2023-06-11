@@ -34,7 +34,6 @@ class SearchRecyclerViewAdapter(private var itemList: ArrayList<ItemBase.ItemDat
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-
         holder.deviceView.text = item.device
         holder.companyView.text = item.company
         holder.priceView.text = item.price.toString()

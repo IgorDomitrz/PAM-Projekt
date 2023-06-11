@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_scrollingFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_scrollingFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"

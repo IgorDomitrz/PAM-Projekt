@@ -9,7 +9,12 @@ object ItemBase {
     val itemList: ArrayList<ItemData> = ArrayList()
 
     init {
-        //Testowanko
+        //Testowanko: comment przy dynamo
+
+        itemList.add(ItemData(0, "Słuchawki", "Samsung", 100.0, "Testowe słuchawki"))
+        itemList.add(ItemData(1, "Program", "CIA", 200.0, "Testowy program"))
+        itemList.add(ItemData(2, "Smartfon", "Samsung", 1000.0, "Testowy smartfon"))
+        itemList.add(ItemData(3, "Konsola", "Sony", 1500.0, "Testowa konsola"))
     }
 
     fun getNextId(): Int {
