@@ -48,7 +48,7 @@ class FormFragment : Fragment() {
             Toast.makeText(
                 activity,
                 "Zakup udany", Toast.LENGTH_LONG).show()
-        }
+            }
         return view
     }
     companion object {

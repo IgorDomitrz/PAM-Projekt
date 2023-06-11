@@ -169,5 +169,7 @@
     <string name="got_wka">Gotówka</string>
     <string name="zakup_produkt">Zakup Produkt</string>
     <string name="w">"W "</string>
+    <string name="zakup">Zakup</string>
+    <string name="przejd_do_zakupu">Przejdź do zakupu</string>
 
 </resources>
