@@ -120,7 +120,7 @@ class LoginFragment : Fragment() {
     private var isNavigationPerformed = false
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
+        val welcome = getString(R.string.welcome) + model.username
         // TODO: initiate successful logged-in experience
         if (!isNavigationPerformed && model.username == "admin@admin.pl" && model.password == "admin1") {
             // Przenieś się do fragmentu ServiceFragment tylko jeśli nie wykonano jeszcze nawigacji
