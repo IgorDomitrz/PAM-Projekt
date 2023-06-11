@@ -45,7 +45,7 @@ object ServiceBase {
     fun pushItem(id: Int) {
         val service = serviceList.find { it.id == id }
         service?.let {
-            val historyEntry = "Urządzenie ${service.id} przeniesiono do Detalu"
+            val historyEntry = "Urządzenie $id przeniesiono do Detalu"
             service.updateHistoryLog(historyEntry)
 
             ItemBase.addItem(service.id, service.device, service.company, service.price, service.detail)
@@ -62,7 +62,7 @@ object ServiceBase {
             val detail = it.detail
             val service = ServiceData(id, device, company, price, detail)
 
-            val historyEntry = "Urządzenie $id przywrócono do Serwisu"
+            val historyEntry = "Urządzenie $id przeniesiono do Serwisu"
             service.updateHistoryLog(historyEntry)
 
             serviceList.add(service)

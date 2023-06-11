@@ -10,57 +10,56 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import com.example.pam_projekt.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var menuLoginItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         // Toolbar
-        toolbar = binding.toolbar
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_logo)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Drawer layout
-        drawerLayout = binding.drawerLayout
+        drawerLayout = findViewById(R.id.drawerLayout)
 
         // Navigation controller
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
         // Set up navigation view
-        navigationView = binding.navigationView
+        navigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_login -> {
-                    navigateToSignInFragment()
+                    if (menuItem.title == getString(R.string.menu_logout)) {
+                        signOut()
+                    } else {
+                        navigateToSignInFragment()
+                    }
                     closeDrawer()
                     true
-
                 }
-
                 R.id.menu_basket -> {
-                    // Handle basket menu click
+                    navController.navigate(R.id.basketFragment)
                     closeDrawer()
                     true
                 }
                 R.id.menu_settings -> {
-                    // Handle settings menu click
+                    navController.navigate(R.id.settingsFragment)
                     closeDrawer()
                     true
                 }
@@ -82,21 +81,19 @@ class MainActivity : AppCompatActivity() {
         // Initialize FirebaseAuth instance
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Get reference to the "Login" menu item
+        menuLoginItem = navigationView.menu.findItem(R.id.menu_login)
+
         // Check if a user is already signed in
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
+            updateMenuLoginItem(true)
             // User is signed in, navigate to the desired destination
             navController.navigate(R.id.homeFragment)
+        } else {
+            updateMenuLoginItem(false)
         }
     }
-
-    private fun navigateToSignInFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.signInFragment, true)
-            .build()
-        navController.navigate(R.id.signInFragment, null, navOptions)
-    }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -126,39 +123,44 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.closeDrawer(GravityCompat.START)
     }
 
-    fun signIn(email: String, password: String) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    navigateToHome()
-                } else {
-                    showToast("Sign-in failed: ${task.exception?.message}")
-                }
-            }
+    private fun navigateToSignInFragment() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.signInFragment, true)
+            .build()
+        navController.navigate(R.id.signInFragment, null, navOptions)
     }
+
+    private fun updateMenuLoginItem(isLoggedIn: Boolean) {
+        menuLoginItem.title = if (isLoggedIn) getString(R.string.menu_logout) else getString(R.string.menu_login)
+    }
+
 
     fun signUp(email: String, password: String) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    navigateToHome()
+                    signIn(email, password)
                 } else {
                     showToast("Sign-up failed: ${task.exception?.message}")
                 }
             }
     }
-
+    fun signIn(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    updateMenuLoginItem(true)
+                    navController.navigate(R.id.homeFragment)
+                } else {
+                    showToast("Sign-in failed: ${task.exception?.message}")
+                }
+            }
+    }
     fun signOut() {
         firebaseAuth.signOut()
-        navigateToSignIn()
-    }
-
-    private fun navigateToHome() {
-        navController.navigate(R.id.homeFragment)
-    }
-
-    private fun navigateToSignIn() {
-        navController.navigate(R.id.signInFragment)
+        updateMenuLoginItem(false)
+        navigateToSignInFragment()
+        showToast("Signed out successfully.")
     }
 
     private fun showToast(message: String) {
