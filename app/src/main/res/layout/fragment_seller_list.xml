@@ -42,7 +42,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
-        android:name="com.example.pam_projekt.BasketFragment"
+        android:name="com.example.pam_projekt.SellerFragment"
         android:layout_width="match_parent"
         android:layout_height="573dp"
         app:layoutManager="LinearLayoutManager"
