@@ -1,11 +1,15 @@
 package com.example.pam_projekt
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.*
+import com.google.zxing.qrcode.QRCodeWriter
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
 
 class ServiceFragment : Fragment() {
     private lateinit var rootView: View
@@ -15,7 +19,8 @@ class ServiceFragment : Fragment() {
         rootView = inflater.inflate(R.layout.fragment_service, container, false)
 
         setupButtonListeners()
-
+        displayItem(0) // Display item with ID 0
+        generateQRCode()
         return rootView
     }
 
@@ -59,7 +64,7 @@ class ServiceFragment : Fragment() {
         searchButton.setOnClickListener {
             searchById()
         }
-          }
+    }
 
     private fun saveData() {
         val device = rootView.findViewById<EditText>(R.id.deviceEditText).text.toString()
@@ -77,27 +82,31 @@ class ServiceFragment : Fragment() {
                 currentItemId = ServiceBase.currentId - 1
             }
 
-            Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_SHORT).show()
-            displayItem(currentItemId) // call displayItem() here
+            Toast.makeText(requireContext(), "Pomyślnie zapisano dane", Toast.LENGTH_SHORT).show()
+            displayItem(currentItemId)
+            generateQRCode()
         } else {
-            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Wypełnij wszystkie pola!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun navigateBack() {
         currentItemId--
         displayItem(currentItemId)
+        generateQRCode()
     }
 
     private fun navigateForward() {
         currentItemId++
         displayItem(currentItemId)
+        generateQRCode()
     }
 
     private fun deleteRecord() {
         ServiceBase.removeService(currentItemId)
-        Toast.makeText(requireContext(), "Record deleted successfully", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Rekord pomyślnie usunięty", Toast.LENGTH_SHORT).show()
         navigateForward()
+        generateQRCode()
     }
 
     private fun moveToDetail() {
@@ -105,8 +114,9 @@ class ServiceFragment : Fragment() {
 
         if (service != null) {
             ServiceBase.pushItem(service.id)
-            Toast.makeText(requireContext(), "Item moved to Detail", Toast.LENGTH_SHORT).show()
-            displayItem(service.id) // call displayItem() here
+            Toast.makeText(requireContext(), "Produkt przekazany do detalu", Toast.LENGTH_SHORT).show()
+            displayItem(service.id)
+            generateQRCode()
         }
     }
 
@@ -115,8 +125,9 @@ class ServiceFragment : Fragment() {
 
         if (item != null) {
             ServiceBase.pullItem(item.id)
-            Toast.makeText(requireContext(), "Item restored to Service", Toast.LENGTH_SHORT).show()
-            displayItem(item.id) // call displayItem() here
+            Toast.makeText(requireContext(), "Produkt przekazany do serwisu", Toast.LENGTH_SHORT).show()
+            displayItem(item.id)
+            generateQRCode()
         }
     }
 
@@ -130,12 +141,14 @@ class ServiceFragment : Fragment() {
             ServiceBase.addService(device, company, price, detail)
             currentItemId = ServiceBase.currentId - 1
 
-            Toast.makeText(requireContext(), "New item added successfully", Toast.LENGTH_SHORT).show()
-            displayItem(currentItemId) // call displayItem() here
+            Toast.makeText(requireContext(), "Udało się dodać produkt", Toast.LENGTH_SHORT).show()
+            displayItem(currentItemId)
+            generateQRCode()
         } else {
-            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Wypełnij wszystkie pola!", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun searchById() {
         val idEditText = rootView.findViewById<EditText>(R.id.searchEditText)
         val id = idEditText.text.toString().toIntOrNull()
@@ -146,6 +159,7 @@ class ServiceFragment : Fragment() {
             if (item != null) {
                 currentItemId = item.id
                 displayItem(currentItemId)
+                generateQRCode()
             } else {
                 Toast.makeText(requireContext(), "Nie znaleziono ID", Toast.LENGTH_SHORT).show()
             }
@@ -184,13 +198,60 @@ class ServiceFragment : Fragment() {
                 idTextView.text = item.id.toString()
                 locationTextView.text = "Detalu"
             } else {
-                deviceEditText.setText("")
-                companyEditText.setText("")
-                priceEditText.setText("")
-                detailEditText.setText("")
+                // Clear form fields when there is no matching item
+                deviceEditText.text = null
+                companyEditText.text = null
+                priceEditText.text = null
+                detailEditText.text = null
                 idTextView.text = ""
                 locationTextView.text = ""
             }
+        }
+    }
+
+    private fun generateQRCode() {
+        val service = ServiceBase.getService(currentItemId)
+
+        if (service != null) {
+            val qrCodeText = generateQRCodeText(service)
+            val qrCodeBitmap = generateQRCodeBitmap(qrCodeText)
+            val generateQRCodeImageView = rootView.findViewById<ImageView>(R.id.generateQRCode)
+            generateQRCodeImageView.setImageBitmap(qrCodeBitmap)
+        }
+    }
+
+    private fun generateQRCodeText(service: ServiceBase.ServiceData): String {
+        val historyEntries = service.historyList.joinToString("\n") { it.description }
+        return buildString {
+            append("Id: \"${service.id}\"\n")
+            append("Produkt: \"${service.device}\"\n")
+            append("Marka: \"${service.company}\"\n")
+            append("Cena: \"${service.price}\"\n")
+            append("Opis: \"${service.detail}\"\n")
+            append("-----------------------------\n")
+            append(historyEntries)
+        }
+    }
+
+    private fun generateQRCodeBitmap(qrCodeText: String): Bitmap {
+        val qrCodeWriter = QRCodeWriter()
+        try {
+            val bitMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, 512, 512)
+            val width = bitMatrix.width
+            val height = bitMatrix.height
+            val pixels = IntArray(width * height)
+            for (y in 0 until height) {
+                val offset = y * width
+                for (x in 0 until width) {
+                    pixels[offset + x] = if (bitMatrix[x, y]) 0xFF000000.toInt() else 0xFFFFFFFF.toInt()
+                }
+            }
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+            return bitmap
+        } catch (e: WriterException) {
+            e.printStackTrace()
+            throw RuntimeException("Nie udało się wygenerować kodu QR", e)
         }
     }
 }

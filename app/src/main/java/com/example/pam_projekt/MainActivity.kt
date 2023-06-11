@@ -1,6 +1,4 @@
 package com.example.pam_projekt
-
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,10 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.pam_projekt.databinding.ActivityMainBinding
-import com.example.pam_projekt.ui.login.SignInFragment
-import com.example.pam_projekt.ui.login.SignUpFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -53,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_login -> {
-                   navigateToSignInFragment()
+                    navigateToSignInFragment()
                     closeDrawer()
                     true
 
@@ -96,11 +91,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToSignInFragment() {
-            val navOptions = NavOptions.Builder()
-                .setPopUpTo(R.id.signInFragment, true)
-                .build()
-            navController.navigate(R.id.signInFragment, null, navOptions)
-        }
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.signInFragment, true)
+            .build()
+        navController.navigate(R.id.signInFragment, null, navOptions)
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

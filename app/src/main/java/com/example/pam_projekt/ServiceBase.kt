@@ -1,16 +1,40 @@
 package com.example.pam_projekt
 
-import java.util.*
-
 object ServiceBase {
     val serviceList: ArrayList<ServiceData> = ArrayList()
     var currentId: Int = 0
+    init {
+        // Add sample data
+        serviceList.add(ServiceData(0, "Słuchawki", "Samsung", 100.0, "Testowe słuchawki"))
+        serviceList.add(ServiceData(1, "Program", "CIA", 200.0, "Testowy program"))
+        serviceList.add(ServiceData(2, "Smartfon", "Samsung", 1000.0, "Testowy smartfon"))
+        serviceList.add(ServiceData(3, "Konsola", "Sony", 1500.0, "Testowa konsola"))
+        currentId = 4
+    }
+    data class ServiceData(
+        val id: Int,
+        var device: String,
+        var company: String,
+        var price: Double,
+        var detail: String
+    ) {
+        data class HistoryEntry(val timestamp: String, val description: String)
 
-    data class ServiceData(val id: Int, val device: String, val company: String, val price: Double, val detail: String)
+        val historyList: MutableList<HistoryEntry> = mutableListOf()
+
+        fun updateHistoryLog(logEntry: String) {
+            val timestamp = android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", java.util.Date()).toString()
+            val historyEntry = HistoryEntry(timestamp, logEntry)
+            historyList.add(historyEntry)
+        }
+    }
 
     fun addService(device: String, company: String, price: Double, detail: String) {
         val service = ServiceData(currentId++, device, company, price, detail)
         serviceList.add(service)
+
+        val historyEntry = "Dodano rekord ${service.id} ${service.device} ${service.company} ${service.price} ${service.detail}"
+        service.updateHistoryLog(historyEntry)
     }
 
     fun removeService(id: Int) {
@@ -21,8 +45,11 @@ object ServiceBase {
     fun pushItem(id: Int) {
         val service = serviceList.find { it.id == id }
         service?.let {
-            ItemBase.addItem(it.id, it.device, it.company, it.price, it.detail)
-            serviceList.remove(it)
+            val historyEntry = "Urządzenie ${service.id} przeniesiono do Detalu"
+            service.updateHistoryLog(historyEntry)
+
+            ItemBase.addItem(service.id, service.device, service.company, service.price, service.detail)
+            serviceList.remove(service)
         }
     }
 
@@ -34,6 +61,10 @@ object ServiceBase {
             val price = it.price
             val detail = it.detail
             val service = ServiceData(id, device, company, price, detail)
+
+            val historyEntry = "Urządzenie $id przywrócono do Serwisu"
+            service.updateHistoryLog(historyEntry)
+
             serviceList.add(service)
             ItemBase.removeItem(id)
         }
@@ -43,7 +74,33 @@ object ServiceBase {
         val service = serviceList.find { it.id == id }
         service?.let {
             val updatedService = ServiceData(it.id, device, company, price, detail)
-            serviceList[serviceList.indexOf(it)] = updatedService
+
+            val historyEntry = StringBuilder()
+
+            if (service.device != device) {
+                historyEntry.append("Zmieniono typ produktu ${service.id} z \"${service.device}\" na \"$device\"\n")
+                updatedService.updateHistoryLog("Zmieniono typ produktu ${service.id} z \"${service.device}\" na \"$device\"")
+            }
+
+            if (service.company != company) {
+                historyEntry.append("Zmieniono markę produktu ${service.id} z \"${service.company}\" na \"$company\"\n")
+                updatedService.updateHistoryLog("Zmieniono markę produktu ${service.id} z \"${service.company}\" na \"$company\"")
+            }
+
+            if (service.price != price) {
+                historyEntry.append("Zmieniono cenę produktu ${service.id} z \"${service.price}\" na \"$price\"\n")
+                updatedService.updateHistoryLog("Zmieniono cenę produktu ${service.id} z \"${service.price}\" na \"$price\"")
+            }
+
+            if (service.detail != detail) {
+                historyEntry.append("Zaktualizowano opis produktu ${service.id}\n")
+                updatedService.updateHistoryLog("Zaktualizowano opis produktu ${service.id}")
+            }
+
+            if (historyEntry.isNotEmpty()) {
+                serviceList[serviceList.indexOf(it)] = updatedService
+                service.updateHistoryLog(historyEntry.toString())
+            }
         }
     }
 
