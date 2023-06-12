@@ -5,11 +5,15 @@ object ServiceBase {
     var currentId: Int = 0
     init {
         // Add sample data
-        serviceList.add(ServiceData(0, "Słuchawki", "Samsung", 100.0, "Testowe słuchawki"))
-        serviceList.add(ServiceData(1, "Program", "CIA", 200.0, "Testowy program"))
-        serviceList.add(ServiceData(2, "Smartfon", "Samsung", 1000.0, "Testowy smartfon"))
-        serviceList.add(ServiceData(3, "Konsola", "Sony", 1500.0, "Testowa konsola"))
-        currentId = 4
+        serviceList.add(ServiceData(0, "Smartfon", "Samsung", 100.0, "Testowy smartfon"))
+        serviceList.add(ServiceData(1, "Konsola", "Samsung", 200.0, "Testowa konsola"))
+        serviceList.add(ServiceData(2, "Komputer", "Samsung", 300.0, "Testowy komputer"))
+        serviceList.add(ServiceData(3, "Podzespół", "Samsung", 400.0, "Testowy podzespół"))
+        serviceList.add(ServiceData(4, "Słuchawki", "Sony", 100.0, "Testowe słuchawki"))
+        serviceList.add(ServiceData(5, "Telewizor", "Sony", 200.0, "Testowy telewizor"))
+        serviceList.add(ServiceData(6, "Peryferium", "Sony", 300.0, "Testowe peryferia"))
+        serviceList.add(ServiceData(7, "Program", "Sony", 400.0, "Testowy program"))
+        currentId = 8
     }
     data class ServiceData(
         val id: Int,
@@ -42,14 +46,13 @@ object ServiceBase {
         service?.let { serviceList.remove(it) }
     }
 
-    fun pushItem(id: Int) {
+    fun pushItem(id: Int, device: String, company: String, price: Double, detail: String) {
         val service = serviceList.find { it.id == id }
         service?.let {
             val historyEntry = "Urządzenie $id przeniesiono do Detalu"
-            service.updateHistoryLog(historyEntry)
-
-            ItemBase.addItem(service.id, service.device, service.company, service.price, service.detail)
-            serviceList.remove(service)
+            it.updateHistoryLog(historyEntry)
+            ItemBase.addItem(id, device, company, price, detail)
+            serviceList.remove(it)
         }
     }
 
@@ -98,7 +101,8 @@ object ServiceBase {
             }
 
             if (historyEntry.isNotEmpty()) {
-                serviceList[serviceList.indexOf(it)] = updatedService
+                val index = serviceList.indexOf(it)
+                serviceList[index] = updatedService
                 service.updateHistoryLog(historyEntry.toString())
             }
         }

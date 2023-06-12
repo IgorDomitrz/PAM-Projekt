@@ -21,6 +21,11 @@ class ServiceFragment : Fragment() {
         setupButtonListeners()
         displayItem(0) // Display item with ID 0
         generateQRCode()
+        ItemBase.addObserver(object : ItemBase.ItemListObserver {
+            override fun onItemListChanged() {
+                generateQRCode()
+            }
+        })
         return rootView
     }
 
@@ -74,12 +79,11 @@ class ServiceFragment : Fragment() {
 
         if (device.isNotBlank() && company.isNotBlank() && price != null && detail.isNotBlank()) {
             val service = ServiceBase.getService(currentItemId)
-
+            val item = ItemBase.getItem(currentItemId)
             if (service != null) {
                 ServiceBase.editService(currentItemId, device, company, price, detail)
-            } else {
-                ServiceBase.addService(device, company, price, detail)
-                currentItemId = ServiceBase.currentId - 1
+            } else if (item != null) {
+                ItemBase.editItem(currentItemId, device, company, price, detail)
             }
 
             Toast.makeText(requireContext(), "Pomyślnie zapisano dane", Toast.LENGTH_SHORT).show()
@@ -113,7 +117,7 @@ class ServiceFragment : Fragment() {
         val service = ServiceBase.getService(currentItemId)
 
         if (service != null) {
-            ServiceBase.pushItem(service.id)
+            ServiceBase.pushItem(service.id,service.device,service.company,service.price,service.detail)
             Toast.makeText(requireContext(), "Produkt przekazany do detalu", Toast.LENGTH_SHORT).show()
             displayItem(service.id)
             generateQRCode()

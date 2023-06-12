@@ -1,4 +1,5 @@
 package com.example.pam_projekt
+
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -10,11 +11,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import com.example.pam_projekt.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
@@ -24,24 +27,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Toolbar
-        toolbar = findViewById(R.id.toolbar)
+        toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_logo)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Drawer layout
-        drawerLayout = findViewById(R.id.drawerLayout)
+        drawerLayout = binding.drawerLayout
 
         // Navigation controller
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
         // Set up navigation view
-        navigationView = findViewById(R.id.navigationView)
+        navigationView = binding.navigationView
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_login -> {
@@ -134,7 +138,6 @@ class MainActivity : AppCompatActivity() {
         menuLoginItem.title = if (isLoggedIn) getString(R.string.menu_logout) else getString(R.string.menu_login)
     }
 
-
     fun signUp(email: String, password: String) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -145,6 +148,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
     }
+
     fun signIn(email: String, password: String) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -156,6 +160,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
     }
+
     fun signOut() {
         firebaseAuth.signOut()
         updateMenuLoginItem(false)

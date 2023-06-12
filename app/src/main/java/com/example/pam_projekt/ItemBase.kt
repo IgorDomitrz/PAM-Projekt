@@ -6,21 +6,28 @@ object ItemBase {
     private var nextId = 1
     val itemList: ArrayList<ItemData> = ArrayList()
 
-
-    fun getNextId(): Int {
-        return nextId++
-    }
-
     fun addItem(id: Int, device: String, company: String, price: Double, detail: String) {
         val item = ItemData(id, device, company, price, detail)
         itemList.add(item)
+        notifyObservers()
     }
 
     fun removeItem(id: Int) {
         val item = itemList.find { it.id == id }
         item?.let { itemList.remove(it) }
     }
+    fun getItem(id: Int): ItemData? {
+        return itemList.find { it.id == id }
+    }
 
+    fun editItem(id: Int, device: String, company: String, price: Double, detail: String) {
+        val item = itemList.find { it.id == id }
+        item?.let {
+            val updatedItem = ItemData(it.id, device, company, price, detail)
+            itemList[itemList.indexOf(it)] = updatedItem
+            notifyObservers()
+        }
+    }
     fun getDevice(id: Int): String {
         return itemList.find { it.id == id }?.device.orEmpty()
     }
@@ -35,5 +42,18 @@ object ItemBase {
 
     fun getDetail(id: Int): String {
         return itemList.find { it.id == id }?.detail.orEmpty()
+    }
+    interface ItemListObserver {
+        fun onItemListChanged()
+    }
+
+    private val observers: MutableList<ItemListObserver> = mutableListOf()
+
+    fun addObserver(observer: ItemListObserver) {
+        observers.add(observer)
+    }
+
+    private fun notifyObservers() {
+        observers.forEach { it.onItemListChanged() }
     }
 }

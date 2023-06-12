@@ -348,17 +348,15 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/SearchInput"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/searchInput"
+        android:hint="@string/wpisz_kryteria_filtracji"
+        android:layout_width="250sp"
         android:layout_height="50sp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="124dp"
-        android:text="@string/ItemSearchTab"
         app:layout_constraintEnd_toEndOf="@+id/cardViewWriteInChat"
         app:layout_constraintTop_toBottomOf="@+id/cardViewWriteInChat" />
-
     <Button
         android:id="@+id/homeToSearchButton"
         style="@style/ButtonStyle"

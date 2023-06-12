@@ -173,5 +173,6 @@
     <string name="w">"W "</string>
     <string name="zakup">Zakup</string>
     <string name="przejd_do_zakupu">Przejdź do zakupu</string>
+    <string name="wpisz_kryteria_filtracji">Wpisz kryteria filtracji</string>
 
 </resources>
