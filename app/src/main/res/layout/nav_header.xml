@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <!-- Logo or app name -->
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

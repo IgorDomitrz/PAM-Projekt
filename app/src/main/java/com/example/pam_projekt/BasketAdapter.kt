@@ -13,7 +13,7 @@ class BasketAdapter(private val basketList: List<BasketBase.BasketData>) :
             binding.basketItem = basketItem
             binding.executePendingBindings()
 
-            // Set the icon based on the device type
+
             val deviceIconResId = getDeviceIconResId(basketItem.device)
             binding.basketLogo.setImageResource(deviceIconResId)
         }
