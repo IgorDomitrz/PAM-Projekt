@@ -37,6 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintVertical_bias="0.578"
         tools:listitem="@layout/fragment_buyer" />
-    " />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

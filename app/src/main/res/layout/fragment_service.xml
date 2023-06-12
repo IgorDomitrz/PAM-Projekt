@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:gravity="center_horizontal"
-        android:text="@string/serviceHeader" />
+        android:text="@string/serviceHeader"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/deviceEditText"

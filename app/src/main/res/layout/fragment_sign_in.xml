@@ -4,10 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/logo_rakieta"
     tools:context=".MainActivity"
-    android:theme="@style/Theme.LoginAndSignUp">
+    android:theme="@style/Theme.LoginAndSignUp"
+    android:background="@color/white">
 
+    <ImageView
+        android:id="@+id/imageViewIcon"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo_rakieta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
         style="@style/LoginTextInputOuterFieldStyle"
@@ -68,7 +77,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/textView"

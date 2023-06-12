@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
         }
 
         imageView7.setOnClickListener {
-            navigateToSearchFragment("Komponent")
+            navigateToSearchFragment("Podzespół")
         }
 
         imageView8.setOnClickListener {
